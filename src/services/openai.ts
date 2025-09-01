@@ -1,10 +1,11 @@
 import OpenAI from 'openai';
-import { OPENAI_API_KEY, OPENAI_ASSISTANT_ID } from '../config/env';
+import { OPENAI_API_KEY } from '../config/env';
 
 class OpenAIService {
   private static instance: OpenAIService;
   private client: OpenAI | null = null;
   private initialized = false;
+  private currentAssistantId: string | null = null;
 
   private constructor() {}
 
@@ -15,12 +16,13 @@ class OpenAIService {
     return OpenAIService.instance;
   }
 
-  initialize() {
-    if (!OPENAI_API_KEY || !OPENAI_ASSISTANT_ID) {
+  initialize(assistantId: string) {
+    if (!OPENAI_API_KEY || !assistantId) {
       this.initialized = false;
       return;
     }
 
+    this.currentAssistantId = assistantId;
     this.client = new OpenAI({
       apiKey: OPENAI_API_KEY,
       dangerouslyAllowBrowser: true // Note: In production, you should use a backend proxy
@@ -40,7 +42,7 @@ class OpenAIService {
   }
 
   async sendMessage(threadId: string, content: string) {
-    if (!this.initialized || !this.client) {
+    if (!this.initialized || !this.client || !this.currentAssistantId) {
       throw new Error('OpenAI service not initialized. Please check your environment variables.');
     }
 
@@ -50,7 +52,7 @@ class OpenAIService {
     });
 
     const run = await this.client.beta.threads.runs.create(threadId, {
-      assistant_id: OPENAI_ASSISTANT_ID!
+      assistant_id: this.currentAssistantId
     });
 
     // Poll for the run completion

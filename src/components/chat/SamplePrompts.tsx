@@ -2,17 +2,11 @@ import React from 'react';
 import { MessageCircle } from 'lucide-react';
 
 interface SamplePromptsProps {
+  samplePrompts: string[];
   onPromptClick: (prompt: string) => void;
 }
 
-const SamplePrompts: React.FC<SamplePromptsProps> = ({ onPromptClick }) => {
-  const samplePrompts = [
-    "Explain the difference between B2B and B2C marketing strategies",
-    "What are the key components of a successful marketing mix (4Ps)?",
-    "How does digital marketing differ from traditional marketing approaches?",
-    "Can you help me understand consumer behavior and decision-making processes?"
-  ];
-
+const SamplePrompts: React.FC<SamplePromptsProps> = ({ samplePrompts, onPromptClick }) => {
   return (
     <div className="w-full max-w-4xl">
       <h3 className="text-lg font-medium text-gray-900 mb-4 text-center">

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { useParams, Navigate } from 'react-router-dom';
 import { useChat } from '../hooks/useChat';
+import { getBotById } from '../config/bots';
 import ChatHeader from '../components/chat/ChatHeader';
 import ChatInput from '../components/chat/ChatInput';
 import ErrorMessage from '../components/chat/ErrorMessage';
@@ -7,8 +9,16 @@ import MessageList from '../components/chat/MessageList';
 import SamplePrompts from '../components/chat/SamplePrompts';
 
 const ChatPage: React.FC = () => {
-  const { messages, isLoading, error, sendMessage, initializeChat } = useChat();
+  const { botId } = useParams<{ botId: string }>();
+  const bot = getBotById(botId || '');
   const [input, setInput] = useState('');
+
+  // Redirect to landing page if bot not found
+  if (!bot) {
+    return <Navigate to="/" replace />;
+  }
+
+  const { messages, isLoading, error, sendMessage, initializeChat } = useChat(bot);
 
   useEffect(() => {
     initializeChat();
@@ -29,24 +39,24 @@ const ChatPage: React.FC = () => {
   return (
     <div className="h-full">
       <div className="bg-white rounded-lg shadow-md border border-gray-100 overflow-hidden h-full flex flex-col">
-        <ChatHeader />
+        <ChatHeader bot={bot} />
         {error && <ErrorMessage message={error} />}
         
         {messages.length === 0 && (
-          <div className="p-8 text-center bg-gradient-to-br from-imperial-teal/10 to-white flex-1 flex flex-col justify-center items-center">
+          <div className={`p-8 text-center bg-gradient-to-br ${bot.backgroundColor} flex-1 flex flex-col justify-center items-center`}>
             <h2 className="text-2xl font-semibold text-imperial-navy mb-4">
-              Welcome to Marketing Management
+              Welcome to {bot.module}
             </h2>
             <div className="max-w-2xl mx-auto mb-8">
               <p className="text-gray-700 mb-6">
-                I'm Professor Omar Merlo, and I'm here to help you with your Marketing Management studies in the Global MBA programme. You can ask me about marketing concepts, strategies, case studies, or get help with your assignments.
+                I'm {bot.instructor}, and I'm here to help you with your {bot.module} studies in the {bot.program} programme. You can ask me about concepts, strategies, case studies, or get help with your assignments.
               </p>
             </div>
-            <SamplePrompts onPromptClick={handleSamplePrompt} />
+            <SamplePrompts samplePrompts={bot.samplePrompts} onPromptClick={handleSamplePrompt} />
           </div>
         )}
         
-        <MessageList messages={messages} />
+        <MessageList messages={messages} botImage={bot.image} />
         <ChatInput
           input={input}
           isLoading={isLoading}

@@ -3,8 +3,6 @@ import { Message } from '../types';
 
 export class ConversationStorageService {
   private static instance: ConversationStorageService;
-  private readonly BOT_ID = 'omarbot-gmba-mm-v1';
-  private readonly BOT_NAME = 'OmarBot GMBA MM';
 
   private constructor() {}
 
@@ -15,14 +13,14 @@ export class ConversationStorageService {
     return ConversationStorageService.instance;
   }
 
-  async saveConversation(threadId: string, messages: Message[]): Promise<void> {
+  async saveConversation(threadId: string, messages: Message[], botId: string, botName: string): Promise<void> {
     if (!threadId || messages.length === 0) return;
 
     try {
       const conversationData = {
         thread_id: threadId,
-        bot_id: this.BOT_ID,
-        bot_name: this.BOT_NAME,
+        bot_id: botId,
+        bot_name: botName,
         messages: messages,
         message_count: messages.length
       };

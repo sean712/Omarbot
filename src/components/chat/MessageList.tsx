@@ -6,9 +6,10 @@ import { useAppContext } from '../../context/AppContext';
 
 interface MessageListProps {
   messages: Message[];
+  botImage: string;
 }
 
-const MessageList: React.FC<MessageListProps> = ({ messages }) => {
+const MessageList: React.FC<MessageListProps> = ({ messages, botImage }) => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const { isLoading } = useAppContext();
 
@@ -24,9 +25,9 @@ const MessageList: React.FC<MessageListProps> = ({ messages }) => {
     <div className="flex-1 overflow-y-auto p-6 bg-[#f7f9fc]">
       <div className="max-w-4xl mx-auto">
         {messages.map((message, index) => (
-          <ChatMessage key={index} message={message} />
+          <ChatMessage key={index} message={message} botImage={botImage} />
         ))}
-        {isLoading && <TypingIndicator />}
+        {isLoading && <TypingIndicator botImage={botImage} />}
         <div ref={messagesEndRef} />
       </div>
     </div>
