@@ -2,14 +2,13 @@ import React from 'react';
 import { format } from 'date-fns';
 import ReactMarkdown from 'react-markdown';
 import { Message } from '../types';
-import { User } from 'lucide-react';
+import { User, Bot } from 'lucide-react';
 
 interface ChatMessageProps {
   message: Message;
-  botImage: string;
 }
 
-const ChatMessage: React.FC<ChatMessageProps> = ({ message, botImage }) => {
+const ChatMessage: React.FC<ChatMessageProps> = ({ message }) => {
   const isUser = message.role === 'user';
 
   return (
@@ -27,11 +26,7 @@ const ChatMessage: React.FC<ChatMessageProps> = ({ message, botImage }) => {
           {isUser ? (
             <User className="w-5 h-5 text-imperial-navy" />
           ) : (
-            <img 
-              src={botImage}
-              alt="Teaching Assistant" 
-              className="w-10 h-10 object-cover rounded-full"
-            />
+            <Bot className="w-5 h-5 text-imperial-teal" />
           )}
         </div>
         

@@ -1,20 +1,12 @@
 import React from 'react';
 import { Bot } from 'lucide-react';
 
-interface TypingIndicatorProps {
-  botImage: string;
-}
-
-const TypingIndicator: React.FC<TypingIndicatorProps> = ({ botImage }) => {
+const TypingIndicator: React.FC = () => {
   return (
     <div className="flex justify-start mb-6 animate-fade-in">
       <div className="flex items-start max-w-[70%] flex-row">
         <div className="flex items-center justify-center w-10 h-10 rounded-full mr-3 bg-white border border-gray-200 shadow-sm">
-          <img 
-            src={botImage}
-            alt="Teaching Assistant" 
-            className="w-10 h-10 object-cover rounded-full"
-          />
+          <Bot className="w-5 h-5 text-imperial-teal" />
         </div>
         <div className="bg-white border border-gray-100 text-gray-800 rounded-lg rounded-bl-none px-4 py-3 shadow-sm">
           <div className="flex space-x-2">

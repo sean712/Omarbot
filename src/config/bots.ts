@@ -5,7 +5,6 @@ export interface BotConfig {
   program: string;
   assistantId: string;
   description: string;
-  image: string;
   samplePrompts: string[];
   instructor: string;
   backgroundColor: string;
@@ -21,7 +20,6 @@ export const bots: BotConfig[] = [
     assistantId: 'asst_2ACYsi78Djkx0DnvtHEdrmWh',
     instructor: 'Professor Omar Merlo',
     description: 'Get expert guidance on marketing management concepts, strategies, and best practices from Professor Omar Merlo.',
-    image: '/Omar Merlo.jpg',
     backgroundColor: 'from-blue-50 to-indigo-50',
     primaryColor: 'blue',
     samplePrompts: [
@@ -39,7 +37,6 @@ export const bots: BotConfig[] = [
     assistantId: 'asst_s5xLxDB4l2K4dRs9dAlrg316',
     instructor: 'Professor Omar Merlo',
     description: 'Learn about brand strategy, brand equity, and brand management from Professor Omar Merlo.',
-    image: '/Omar Merlo.jpg',
     backgroundColor: 'from-purple-50 to-pink-50',
     primaryColor: 'purple',
     samplePrompts: [
@@ -57,7 +54,6 @@ export const bots: BotConfig[] = [
     assistantId: 'asst_opIj7dFgXV7h1LG2Blz3bDVG',
     instructor: 'Professor Omar Merlo',
     description: 'Master strategic marketing concepts and frameworks with guidance from Professor Omar Merlo.',
-    image: '/Omar Merlo.jpg',
     backgroundColor: 'from-green-50 to-emerald-50',
     primaryColor: 'green',
     samplePrompts: [
@@ -75,7 +71,6 @@ export const bots: BotConfig[] = [
     assistantId: 'asst_GHnZv1rU31arOasLdS8NezdE',
     instructor: 'Professor Omar Merlo',
     description: 'Explore services marketing and customer relationship management with Professor Omar Merlo.',
-    image: '/Omar Merlo.jpg',
     backgroundColor: 'from-orange-50 to-red-50',
     primaryColor: 'orange',
     samplePrompts: [
@@ -93,7 +88,6 @@ export const bots: BotConfig[] = [
     assistantId: 'asst_DnW6iiU6F1xzF1giu4acyg8t',
     instructor: 'Professor Penny',
     description: 'Develop critical thinking and problem-solving skills for complex business challenges with Professor Penny.',
-    image: '/Omar Merlo.jpg', // Using same image for now, can be updated later
     backgroundColor: 'from-teal-50 to-cyan-50',
     primaryColor: 'teal',
     samplePrompts: [
@@ -111,7 +105,6 @@ export const bots: BotConfig[] = [
     assistantId: 'asst_s5xLxDB4l2K4dRs9dAlrg316',
     instructor: 'Professor Bart',
     description: 'Learn entrepreneurship fundamentals and startup strategies with Professor Bart.',
-    image: '/Omar Merlo.jpg', // Using same image for now, can be updated later
     backgroundColor: 'from-indigo-50 to-purple-50',
     primaryColor: 'indigo',
     samplePrompts: [

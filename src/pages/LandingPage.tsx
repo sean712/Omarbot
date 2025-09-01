@@ -56,11 +56,9 @@ const LandingPage: React.FC = () => {
                   >
                     <div className={`bg-gradient-to-br ${bot.backgroundColor} rounded-xl p-6 shadow-lg hover:shadow-xl border border-gray-200`}>
                       <div className="flex items-center mb-4">
-                        <img
-                          src={bot.image}
-                          alt={bot.instructor}
-                          className="w-12 h-12 rounded-full object-cover mr-3 border-2 border-white shadow-sm"
-                        />
+                        <div className="w-12 h-12 rounded-full bg-white shadow-sm mr-3 flex items-center justify-center border-2 border-white">
+                          <Bot className="h-6 w-6 text-imperial-teal" />
+                        </div>
                         <div>
                           <h3 className="font-semibold text-gray-900 text-lg">
                             {bot.name}
