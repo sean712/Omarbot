@@ -85,7 +85,7 @@ export const bots: BotConfig[] = [
     name: 'PennyBot Business Problem Solving',
     module: 'Business Problem Solving',
     program: 'Global MBA',
-    assistantId: 'asst_DnW6iiU6F1xzF1giu4acyg8t',
+    assistantId: 'asst_2ACYsi78Djkx0DnvtHEdrmWh', // Temporary - using working assistant ID
     instructor: 'Professor Penny',
     description: 'Develop critical thinking and problem-solving skills for complex business challenges with Professor Penny.',
     backgroundColor: 'from-teal-50 to-cyan-50',
