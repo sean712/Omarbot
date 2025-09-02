@@ -51,7 +51,7 @@ const ChatPage: React.FC = () => {
         {error && <ErrorMessage message={error} />}
         
         {messages.length === 0 && (
-          <div className={`p-8 text-center bg-gradient-to-br ${bot.backgroundColor} flex-1 flex flex-col justify-center items-center`}>
+          <div className="p-8 text-center bg-gray-50 flex-1 flex flex-col justify-center items-center">
             <h2 className="text-2xl font-semibold text-imperial-navy mb-4">
               Welcome to {bot.module}
             </h2>
