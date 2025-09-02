@@ -7,11 +7,13 @@ import ChatInput from '../components/chat/ChatInput';
 import ErrorMessage from '../components/chat/ErrorMessage';
 import MessageList from '../components/chat/MessageList';
 import SamplePrompts from '../components/chat/SamplePrompts';
+import { useAppContext } from '../context/AppContext';
 
 const ChatPage: React.FC = () => {
   const { botId } = useParams<{ botId: string }>();
   const bot = getBotById(botId || '');
   const [input, setInput] = useState('');
+  const { setChatMessages, setThreadId, setError } = useAppContext();
 
   // Redirect to landing page if bot not found
   if (!bot) {
@@ -20,6 +22,12 @@ const ChatPage: React.FC = () => {
 
   const { messages, isLoading, error, sendMessage, initializeChat } = useChat(bot);
 
+  // Clear chat state when switching to a different bot
+  useEffect(() => {
+    setChatMessages([]);
+    setThreadId(null);
+    setError(null);
+  }, [botId, setChatMessages, setThreadId, setError]);
   useEffect(() => {
     initializeChat();
   }, [initializeChat]);
