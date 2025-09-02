@@ -50,7 +50,7 @@ export const bots: BotConfig[] = [
     id: 'OmarBotSMM',
     name: 'OmarBot Strategic Marketing',
     module: 'Strategic Marketing Management',
-    program: 'Specialized Masters',
+    program: 'Strategic Marketing Online',
     assistantId: 'asst_opIj7dFgXV7h1LG2Blz3bDVG',
     instructor: 'Professor Omar Merlo',
     description: 'Master strategic marketing concepts and frameworks with guidance from Professor Omar Merlo.',
