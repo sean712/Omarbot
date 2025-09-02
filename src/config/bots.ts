@@ -17,7 +17,7 @@ export const bots: BotConfig[] = [
     name: 'OmarBot Marketing Management',
     module: 'Marketing Management',
     program: 'Global MBA',
-    assistantId: 'asst_2ACYsi78Djkx0DnvtHEdrmWh',
+    assistantId: 'asst_wIfbP6ZwBTsQrASEkj3XmEDq',
     instructor: 'Professor Omar Merlo',
     description: 'Get expert guidance on marketing management concepts, strategies, and best practices from Professor Omar Merlo.',
     backgroundColor: 'from-blue-50 to-indigo-50',
