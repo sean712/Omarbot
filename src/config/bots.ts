@@ -34,7 +34,7 @@ export const bots: BotConfig[] = [
     name: 'OmarBot Brand Management',
     module: 'Brand Management',
     program: 'Global MBA',
-    assistantId: 'asst_s5xLxDB4l2K4dRs9dAlrg316',
+    assistantId: 'asst_2YgIQdCZLTzPsW5LeiZAKpSU',
     instructor: 'Professor Omar Merlo',
     description: 'Learn about brand strategy, brand equity, and brand management from Professor Omar Merlo.',
     backgroundColor: 'from-purple-50 to-pink-50',
