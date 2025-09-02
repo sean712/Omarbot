@@ -98,6 +98,23 @@ export const bots: BotConfig[] = [
     ]
   },
   {
+    id: 'JonathanBotFTMBAME',
+    name: 'JonathanBot Managerial Economics',
+    module: 'Managerial Economics',
+    program: 'Full-time MBA',
+    assistantId: 'asst_Qk17WHJffWzPYbXzXrNsakfi',
+    instructor: 'Professor Jonathan',
+    description: 'Master economic principles and decision-making frameworks for managers with Professor Jonathan.',
+    backgroundColor: 'from-amber-50 to-yellow-50',
+    primaryColor: 'amber',
+    samplePrompts: [
+      "How do supply and demand forces affect pricing decisions?",
+      "What is game theory and how does it apply to business strategy?",
+      "Explain the concept of elasticity and its managerial implications",
+      "How do you analyze cost structures for optimal decision-making?"
+    ]
+  },
+  {
     id: 'BartBotEMBAEntre',
     name: 'BartBot Entrepreneurship',
     module: 'Entrepreneurship',
