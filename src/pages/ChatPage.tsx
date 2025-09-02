@@ -34,7 +34,7 @@ const ChatPage: React.FC = () => {
   };
 
   const handleSamplePrompt = (prompt: string) => {
-    setInput(prompt);
+    sendMessage(prompt);
   };
   return (
     <div className="h-full">
