@@ -86,7 +86,31 @@ class OpenAIService {
       throw new Error('Assistant response is empty');
     }
 
-    return assistantMessage.content[0].text.value;
+    let responseText = assistantMessage.content[0].text.value;
+    
+    // Process citations if they exist
+    if (assistantMessage.content[0].text.annotations && assistantMessage.content[0].text.annotations.length > 0) {
+      const annotations = assistantMessage.content[0].text.annotations;
+      
+      // Process annotations and get file information
+      for (const annotation of annotations) {
+        if (annotation.type === 'file_citation') {
+          try {
+            const fileId = annotation.file_citation?.file_id;
+            if (fileId && this.client) {
+              const file = await this.client.files.retrieve(fileId);
+              const fileName = file.filename || 'Unknown Source';
+              responseText = responseText.replace(annotation.text, ` [${fileName}]`);
+            }
+          } catch (error) {
+            console.warn('Could not retrieve file information for citation:', error);
+            responseText = responseText.replace(annotation.text, ' [Source]');
+          }
+        }
+      }
+    }
+    
+    return responseText;
   }
 }
 
