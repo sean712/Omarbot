@@ -86,11 +86,7 @@ class OpenAIService {
       throw new Error('Assistant response is empty');
     }
 
-    // Remove source citations like 【6:7†source】 from the response
-    const responseText = assistantMessage.content[0].text.value;
-    const cleanedText = responseText.replace(/【.*?】/g, '');
-    
-    return cleanedText;
+    return assistantMessage.content[0].text.value;
   }
 }
 
