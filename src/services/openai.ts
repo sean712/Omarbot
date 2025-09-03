@@ -91,6 +91,7 @@ class OpenAIService {
     // Process citations if they exist
     if (assistantMessage.content[0].text.annotations && assistantMessage.content[0].text.annotations.length > 0) {
       const annotations = assistantMessage.content[0].text.annotations;
+      const sources: string[] = [];
       
       // Process annotations and get file information
       for (const annotation of annotations) {
@@ -100,13 +101,21 @@ class OpenAIService {
             if (fileId && this.client) {
               const file = await this.client.files.retrieve(fileId);
               const fileName = file.filename || 'Unknown Source';
-              responseText = responseText.replace(annotation.text, ` [${fileName}]`);
+              sources.push(fileName);
+              responseText = responseText.replace(annotation.text, '');
             }
           } catch (error) {
             console.warn('Could not retrieve file information for citation:', error);
-            responseText = responseText.replace(annotation.text, ' [Source]');
+            sources.push('Unknown Source');
+            responseText = responseText.replace(annotation.text, '');
           }
         }
+      }
+      
+      // Add sources at the end of the response
+      if (sources.length > 0) {
+        const uniqueSources = [...new Set(sources)]; // Remove duplicates
+        responseText += '\n\n' + uniqueSources.map(source => `(Source: ${source})`).join('\n');
       }
     }
     
