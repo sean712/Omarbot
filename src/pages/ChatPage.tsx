@@ -20,7 +20,7 @@ const ChatPage: React.FC = () => {
     return <Navigate to="/" replace />;
   }
 
-  const { messages, isLoading, error, sendMessage, initializeChat } = useChat(bot);
+  const { messages, isLoading, error, sendMessage, initializeChat, clearChat } = useChat(bot);
 
   // Clear chat state when switching to a different bot
   useEffect(() => {
@@ -47,7 +47,7 @@ const ChatPage: React.FC = () => {
   return (
     <div className="h-full">
       <div className="bg-white rounded-lg shadow-md border border-gray-100 overflow-hidden h-full flex flex-col">
-        <ChatHeader bot={bot} />
+        <ChatHeader bot={bot} onClearChat={clearChat} />
         {error && <ErrorMessage message={error} />}
         
         {messages.length === 0 && (

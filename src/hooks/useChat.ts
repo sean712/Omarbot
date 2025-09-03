@@ -33,6 +33,25 @@ export const useChat = (bot: BotConfig) => {
     }
   }, [threadId, setError, setThreadId, bot.assistantId]);
 
+  const clearChat = useCallback(async () => {
+    try {
+      setIsLoading(false);
+      setError(null);
+      setChatMessages([]);
+      setThreadId(null);
+      
+      // Initialize a new thread
+      openAIService.initialize(bot.assistantId);
+      if (!openAIService.isInitialized()) {
+        setError('OpenAI service not initialized. Please check your environment variables.');
+        return;
+      }
+      const thread = await openAIService.createThread();
+      setThreadId(thread.id);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to clear chat');
+    }
+  }, [setIsLoading, setError, setChatMessages, setThreadId, bot.assistantId]);
   const sendMessage = useCallback(async (content: string) => {
     if (!threadId) return;
 
@@ -77,5 +96,6 @@ export const useChat = (bot: BotConfig) => {
     error,
     sendMessage,
     initializeChat,
+    clearChat,
   };
 };
